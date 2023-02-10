@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+    .btn {
+      @apply mb-4 text-2xl font-bold bg-pink-500 md:text-3xl xl:text-3xl sm:text-xl;
+    }
+  
+   
+  }
