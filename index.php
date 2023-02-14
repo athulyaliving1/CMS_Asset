@@ -1,9 +1,9 @@
-<?php  
+<?php
 include('./include/config.php');
-session_start(); 
+session_start();
 
- 
-if(isset($_POST['submit'])){
+
+if (isset($_POST['submit'])) {
     $username = $_POST['user_name'];
     $password = $_POST['password'];
     $_SESSION['user_name'] = $username;
@@ -13,32 +13,27 @@ if(isset($_POST['submit'])){
         header("Location: index.php?error=User Name is required");
 
         exit();
-
-    }else if(empty($password)){
+    } else if (empty($password)) {
 
         header("Location: index.php?error=Password is required");
 
         exit();
-
     }
-    $sql = "SELECT * FROM users WHERE userEmail = '".$username."' AND password = '".$password."' limit 1";
+    $sql = "SELECT * FROM masterusers WHERE email = '" . $username . "' AND password = '" . $password . "' ";
 
-    $result = mysqli_query($conn,$sql);
-    while($res =mysqli_fetch_array($result)){
-        $name =$res['fullName'];
-        $id =$res['id'];
-     }
-         
-    if(mysqli_num_rows($result) == 1){
-       $_SESSION['fullName'] = $name;
-       $_SESSION['id'] = $id;
-       header("location:branchmaster.php");
+    $result = mysqli_query($conn, $sql);
+    while ($res = mysqli_fetch_array($result)) {
+        $name = $res['name'];
+        $id = $res['id'];
     }
-    else{
+
+    if (mysqli_num_rows($result) == 1) {
+        $_SESSION['name'] = $name;
+        $_SESSION['id'] = $id;
+        header("location:branchmaster.php");
+    } else {
         header("Location: index.php?error=Incorect User name or password");
-   
     }
-
 }
 
 
@@ -56,8 +51,7 @@ if(isset($_POST['submit'])){
 </head>
 
 <body>
-    <div class="relative flex items-center justify-center min-h-screen px-4 py-12 bg-gray-500 bg-no-repeat bg-cover sm:px-6 lg:px-8"
-        style="background-image: url(https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);">
+    <div class="relative flex items-center justify-center min-h-screen px-4 py-12 bg-gray-500 bg-no-repeat bg-cover sm:px-6 lg:px-8" style="background-image: url(https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);">
         <div class="absolute inset-0 z-0 bg-black opacity-60"></div>
         <div class="z-10 w-full max-w-md p-10 space-y-8 bg-white rounded-xl">
             <div class="text-center">
@@ -68,7 +62,7 @@ if(isset($_POST['submit'])){
             </div>
             <?php if (isset($_GET['error'])) { ?>
 
-            <p class="text-center text-white bg-sky-800 rounded-3xl"><?php echo $_GET['error']; ?></p>
+                <p class="text-center text-white bg-sky-800 rounded-3xl"><?php echo $_GET['error']; ?></p>
 
             <?php } ?>
             <!-- <div class="flex flex-row items-center justify-center space-x-3">
@@ -95,22 +89,17 @@ if(isset($_POST['submit'])){
                 <div class="relative">
 
                     <label class="text-sm font-bold tracking-wide text-gray-700">Email</label>
-                    <input
-                        class="w-full py-2 text-base border-b border-gray-300 focus:outline-none focus:border-pink-500"
-                        type="" name="user_name" placeholder="mail@athulyaliving.com">
+                    <input class="w-full py-2 text-base border-b border-gray-300 focus:outline-none focus:border-pink-500" type="" name="user_name" placeholder="mail@athulyaliving.com">
                 </div>
                 <div class="content-center mt-8">
                     <label class="text-sm font-bold tracking-wide text-gray-700">
                         Password
                     </label>
-                    <input
-                        class="content-center w-full py-2 text-base border-b border-gray-300 focus:outline-none focus:border-pink-500"
-                        type="password" name="password" placeholder="Enter your password">
+                    <input class="content-center w-full py-2 text-base border-b border-gray-300 focus:outline-none focus:border-pink-500" type="password" name="password" placeholder="Enter your password">
                 </div>
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <input id="remember_me" name="remember_me" type="checkbox"
-                            class="w-4 h-4 bg-pink-500 border-gray-300 rounded focus:ring-indigo-400">
+                        <input id="remember_me" name="remember_me" type="checkbox" class="w-4 h-4 bg-pink-500 border-gray-300 rounded focus:ring-indigo-400">
                         <label for="remember_me" class="block ml-2 text-sm text-gray-900">
                             Remember me
                         </label>
@@ -122,15 +111,13 @@ if(isset($_POST['submit'])){
                     </div>
                 </div>
                 <div>
-                    <button type="submit" name="submit"
-                        class="flex justify-center w-full p-4 font-semibold tracking-wide text-gray-100 transition duration-300 ease-in bg-pink-500 rounded-full shadow-lg cursor-pointer focus:outline-none focus:shadow-outline hover:bg-pink-600">
+                    <button type="submit" name="submit" class="flex justify-center w-full p-4 font-semibold tracking-wide text-gray-100 transition duration-300 ease-in bg-pink-500 rounded-full shadow-lg cursor-pointer focus:outline-none focus:shadow-outline hover:bg-pink-600">
                         Sign in
                     </button>
                 </div>
                 <p class="flex flex-col items-center justify-center mt-10 text-center text-gray-500 text-md">
                     <span>Don't have an account?</span>
-                    <a href="#"
-                        class="no-underline transition duration-300 ease-in cursor-pointer text-sky-900 hover:text-sky-900 hover:underline">Sign
+                    <a href="#" class="no-underline transition duration-300 ease-in cursor-pointer text-sky-900 hover:text-sky-900 hover:underline">Sign
                         up</a>
                 </p>
             </form>

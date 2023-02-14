@@ -95,7 +95,7 @@ session_start();
                     </div>
                  
                     <div class="flex items-center space-x-5">
-                    <p class="text-white text-xl mr-3 font-semibold">Welcome,<?php echo $_SESSION['fullName']; ?></p>
+                    <p class="text-white text-xl mr-3 font-semibold">Welcome,<?php echo $_SESSION['name']; ?></p>
                         <button id="toggleSidebarMobileSearch" type="button"
                             class="p-2 text-gray-500 rounded-lg lg:hidden hover:text-gray-900 hover:bg-gray-100">
 
