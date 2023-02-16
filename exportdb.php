@@ -6,7 +6,7 @@ include('./include/config.php');
 
 
 // fetch records
-$sql = "select * from product";
+$sql = "select * from products";
 $result = mysqli_query($conn, $sql);
 
 while($row = mysqli_fetch_assoc($result)) {

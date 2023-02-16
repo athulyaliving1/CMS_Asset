@@ -1,28 +1,24 @@
-<?php 
+<?php
 include('./include/config.php');
-  if(isset($_POST['submit']))
-  {
-       
-        $Date=$_POST['date'];
-        $From=$_POST['from'];
-        $To=$_POST['to'];
-        $Dept=$_POST['department'];
-        $Desc=$_POST['description'];
-        $Name=$_POST['name'];
-        $Status=$_POST['status'];
-        $Qty=$_POST['qty'];
-        $query= "INSERT INTO `inoutdevices`(`Date`,`From`,`To`,`Department`,`Description`,`Name`,`Status`,`Qty`) VALUES ('$Date','$From','$To','$Dept','$Desc','$Name','$Status','$Qty')";
+if (isset($_POST['submit'])) {
 
-      
-        if(mysqli_query($conn, $query))
-        {
-              echo "<script type='text/javascript'>alert('Data Inserted!!'); </script>";
-        }
-        else
-        {
-             echo "<script type='text/javascript'>alert('Data Not Inserted!!');</script>";
-        } 
-  }
+    $Date = $_POST['date'];
+    $From = $_POST['from'];
+    $To = $_POST['to'];
+    $Dept = $_POST['department'];
+    $Desc = $_POST['description'];
+    $Name = $_POST['name'];
+    $Status = $_POST['status'];
+    $Qty = $_POST['qty'];
+    $query = "INSERT INTO `inoutdevices`(`Date`,`From`,`To`,`Department`,`Description`,`Name`,`Status`,`Qty`) VALUES ('$Date','$From','$To','$Dept','$Desc','$Name','$Status','$Qty')";
+
+
+    if (mysqli_query($conn, $query)) {
+        echo "<script type='text/javascript'>alert('Data Inserted!!'); </script>";
+    } else {
+        echo "<script type='text/javascript'>alert('Data Not Inserted!!');</script>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +29,9 @@ include('./include/config.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asset || Inward-Outward</title>
     <link rel="icon" href="https://athulyahomecare.com/lp/images/fav.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/dist/output.css" rel="stylesheet">
     <script>
     tailwind.config = {
         theme: {
@@ -73,6 +71,136 @@ include('./include/config.php');
         },
     }
     </script>
+     <script>
+        function getCat(val) {
+            // alert('val');
+
+            $.ajax({
+                type: "POST",
+                url: "depentdb.php",
+                data: 'branch_state=' + val,
+                success: function(data) {
+                    console.log(data);
+                    $("#branch_city").html(data);
+
+                }
+            });
+        }
+
+        function getCat1(val1) {
+            // alert('val');
+
+            $.ajax({
+                type: "POST",
+                url: "depentdb1.php",
+                data: 'branch_city=' + val1,
+                success: function(data1) {
+                    $("#branch_name").html(data1);
+                    console.log("data");
+                }
+            });
+
+        }
+    </script>
+
+
+    <script>
+        function getDep(val) {
+            // alert('val');
+
+            $.ajax({
+                type: "POST",
+                url: "productsub.php",
+                data: 'stateName=' + val,
+                success: function(data) {
+                    console.log(data);
+                    $("#state_id").html(data);
+
+                }
+            });
+        }
+    </script>
+    <script>
+        function getBrncode(val2) {
+            // alert('val');
+
+            $.ajax({
+                type: "POST",
+                url: "branchcodesub.php",
+                data: 'branch_name=' + val2,
+                success: function(data2) {
+                    console.log(data2);
+                    $("#branch_code").html(data2);
+
+                }
+            });
+        }
+    </script>
+
+    <!-- To Location  Script -->
+
+   <script>
+     
+        function getLoc(valdata) {
+            // alert('val');
+
+            $.ajax({
+                type: "POST",
+                url: "depentdbc1.php",
+                data: 'tbranch_state=' + valdata,
+                success: function(datab) {
+                    console.log(datab);
+                    $("#tbranch_city").html(datab);
+                    console.log("datab");
+
+                }
+            });
+        }
+
+        
+        function getBrncc(valdata1) {
+            // alert('val');
+
+            $.ajax({
+                type: "POST",
+                url: "depentdb12.php",
+                data: 'tbranch_city=' + valdata1,
+                success: function(datacc) {
+                    $("#tbranch_name").html(datacc);
+                    console.log("data12");
+                }
+            });
+
+        }
+
+        function getBrnff(valff) {
+            // alert('val');
+
+            $.ajax({
+                type: "POST",
+                url: "branchcodesub1.php",
+                data: 'tbranch_name=' + valff,
+                success: function(dataff) {
+                    console.log(dataff);
+                    $("#tbranch_code").html(dataff);
+
+                }
+            });
+        }
+
+
+        
+    </script>
+
+
+
+
+
+
+
+
+
+
 </head>
 
 <body>
@@ -80,7 +208,7 @@ include('./include/config.php');
     <div>
         <div class="flex flex-col flex-auto flex-shrink-0 min-h-screen antialiased text-black bg-zinc-100 ">
             <?php
-            include('./include/sidebar.php');
+             include('./include/sidebar.php');
 
             ?>
             <div class="h-full mb-10 ml-14 mt-14 md:ml-64 md:px-20 xl:px-40">
@@ -92,109 +220,171 @@ include('./include/config.php');
 
                         <div>
                             <label class="block my-3 font-semibold text-gray-800 text-md" for="email">Date</label>
-                            <input class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none" type="date" 
+                            <input class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none" type="date"
                                 name="date" id="email" />
                         </div>
-                        <div class="">
-                            <label class="block my-3 font-semibold text-gray-800 text-md" for="email">Department
-                                Code</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class=''>
+                                <label for="department"
+                                    class="block my-3 font-semibold text-gray-800 text-md">Department
+                                </label>
 
-                            <select name="department"
-                                class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none"
-                                fdprocessedid="7su8rc">
-                                <option class="but1">IT</option>
-                                <option class="but1">DM</option>
-                                <option class="but1">Marketing</option>
-                                <option class="but1">Business Development</option>
-                                <option class="but1">HR</option>
-                                <option class="but1">Training Department</option>
-                                <option class="but1">Marketing</option>
-                                <option class="but1">Business Development</option>
-                                <option class="but1">HR</option>
-                                <option class="but1">Training Department</option>
-                                <option class="but1">Quality</option>
-                                <option class="but1">Operations Home care</option>
-                                <option class="but1">Client Acquistion</option>
-                                <option class="but1">Pharmacy</option>
-                                <option class="but1">Project Team</option>
-                                <option class="but1">Clinical</option>
+                                <select type="text" name="department" readonly
+                                    class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none" id="department"
+                                    onChange="getDep(this.value);">
+                                    <option value="">Select Category</option>
+                                    <?php
+                                    include('./include/config.php');
 
-                            </select>
+                                    // $dbcon = mysqli_connect("localhost", "root", "", "test1");
+                                    $sql = mysqli_query($conn, "select stateName,state_id from state");
+                                    while ($rw = mysqli_fetch_assoc($sql)) {
+                                    ?>
+                                    <option value="<?php echo htmlentities($rw['stateName']); ?>">
+                                        <?php echo htmlentities($rw['stateName']); ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class=''>
+                                <label for="departmentcode"
+                                    class="block my-3 font-semibold text-gray-800 text-md">Department Code
+                                </label>
+                                <div>
+                                    <select name="departmentcode" id="state_id"
+                                        class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none">
+                                        <option value="">Select Subcategory</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
+
                     </div>
 
-                    <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
 
-                        <div>
-                            <label class="block my-3 font-semibold text-gray-800 text-md" for="email">From</label>
+                    <div>
+                        <h5 class="block my-3 mt-5 font-semibold text-center text-gray-800 text-md">From Location<h5>
+                                <div class="grid grid-cols-1 gap-4 xl:grid-cols-4">
+                                    <div>
+                                        <label for="state" class="block my-3 font-semibold text-gray-800 text-md ">State
+                                        </label>
 
-                            <select name="from" name="from"
-                                class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none" id="email"
-                                fdprocessedid="dwokmm">
-                                <option class="form-control">ATH-PVM</option>
+                                        <select type="text"
+                                            class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none"
+                                            id="state" name="state" onChange="getCat(this.value);">
+                                            <option value="">Select Category</option>
+                                            <?php
 
-                                <option class="form-control">ATH-PRG</option>
+                                            // $conn = mysqli_connect("localhost", "root", "", "athul9z1_cms");
+                                            include('./include/config.php');
 
-                                <option class="form-control">ATH-NLK</option>
 
-                                <option class="form-control">ATH-ARM</option>
+                                            $sql = mysqli_query($conn, "select distinct branch_state from master_branches");
+                                            while ($rw = mysqli_fetch_assoc($sql)) {
+                                            ?>
+                                            <option value="<?php echo htmlentities($rw['branch_state']); ?>">
+                                                <?php echo htmlentities($rw['branch_state']); ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
 
-                                <option class="form-control">ATH-BLR</option>
+                                    <div class=''>
+                                        <label for="location"
+                                            class="block my-3 font-semibold text-gray-800 text-md ">Location</label>
 
-                                <option class="form-control">ATH-CORP</option>
+                                        <select name="location" id="branch_city" onChange="getCat1(this.value);"
+                                            class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none">
+                                            <option value="">Select Subcategory</option>
+                                        </select>
+                                    </div>
 
-                                <option class="form-control">ATH-GNY</option>
+                                    <div class=''>
+                                        <label for="place" class="block my-3 font-semibold text-gray-800 text-md ">Place
+                                        </label>
 
-                                <option class="form-control">ATH-TVT</option>
+                                        <select name="place" id="branch_name" onChange="getBrncode(this.value);"
+                                            class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none">
+                                            <option value="">Select Subcategory</option>
+                                        </select>
 
-                                <option class="form-control">ATH-TNR</option>
-
-                                <option class="form-control">ATH-sdfsdf</option>
-
-                                <option class="form-control">ATH-Nulla deleniti quide</option>
-
-                                <option class="form-control">ATH-Facilis dolor esse v</option>
-
-                                <option class="form-control">ATH-</option>
-
-                            </select>
-
-                        </div>
-                        <div class="">
-                            <label class="block my-3 font-semibold text-gray-800 text-md" for="email">To</label>
-                            <select name="to"
-                                class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none" id="email"
-                                fdprocessedid="dwokmm">
-                                <option class="form-control">ATH-PVM</option>
-
-                                <option class="form-control">ATH-PRG</option>
-
-                                <option class="form-control">ATH-NLK</option>
-
-                                <option class="form-control">ATH-ARM</option>
-
-                                <option class="form-control">ATH-BLR</option>
-
-                                <option class="form-control">ATH-CORP</option>
-
-                                <option class="form-control">ATH-GNY</option>
-
-                                <option class="form-control">ATH-TVT</option>
-
-                                <option class="form-control">ATH-TNR</option>
-
-                                <option class="form-control">ATH-sdfsdf</option>
-
-                                <option class="form-control">ATH-Nulla deleniti quide</option>
-
-                                <option class="form-control">ATH-Facilis dolor esse v</option>
-
-                                <option class="form-control">ATH-</option>
-
-                            </select>
-
-                        </div>
+                                    </div>
+                                    <div class=''>
+                                        <label for="branchcode"
+                                            class="block my-3 font-semibold text-gray-800 text-md ">Branch
+                                            Code
+                                        </label>
+                                        <select name="branchcode" id="branch_code"
+                                            class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none">
+                                            <option value="">Branch Code</option>
+                                        </select>
+                                    </div>
+                                </div>
                     </div>
+                    <div>
+                        <h5 class="block my-3 mt-5 font-semibold text-center text-gray-800 text-md">To Location<h5>
+                                <div class="grid grid-cols-1 gap-4 xl:grid-cols-4">
+                                    <div>
+                                        <label for="state" class="block my-3 font-semibold text-gray-800 text-md">State
+                                        </label>
+
+                                        <select type="text"
+                                            class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none"
+                                            id="state" name="state" onChange="getLoc(this.value);">
+                                            <option value="">Select Category</option>
+                                            <?php
+
+                                            // $conn = mysqli_connect("localhost", "root", "", "athul9z1_cms");
+                                            include('./include/config.php');
+
+
+                                            $sql = mysqli_query($conn, "select distinct branch_state from master_branches");
+                                            while ($rw = mysqli_fetch_assoc($sql)) {
+                                            ?>
+                                            <option value="<?php echo htmlentities($rw['branch_state']); ?>">
+                                                <?php echo htmlentities($rw['branch_state']); ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+
+                                    <div class=''>
+                                        <label for="location"
+                                            class="block my-3 font-semibold text-gray-800 text-md ">Location</label>
+
+                                        <select name="location" id="tbranch_city" onChange="getBrncc(this.value);"
+                                            class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none">
+                                            <option value="">Select Subcategory</option>
+                                        </select>
+                                    </div>
+
+                                    <div class=''>
+                                        <label for="place" class="block my-3 font-semibold text-gray-800 text-md ">Place
+                                        </label>
+
+                                        <select name="place" id="tbranch_name" onChange="getBrnff(this.value);"
+                                            class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none">
+                                            <option value="">Select Subcategory</option>
+                                        </select>
+
+                                    </div>
+                                    <div class=''>
+                                        <label for="branchcode"
+                                            class="block my-3 font-semibold text-gray-800 text-md ">Branch
+                                            Code
+                                        </label>
+                                        <select name="branchcode" id="tbranch_code"
+                                            class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none">
+                                            <option value="">Branch Code</option>
+                                        </select>
+                                    </div>
+                                </div>
+                    </div>
+
 
                     <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
 
@@ -205,7 +395,8 @@ include('./include/config.php');
                                 name="description" id="email" placeholder="Description" />
                         </div>
                         <div class="">
-                            <label class="block my-3 font-semibold text-gray-800 text-md" for="email">Name/Emp Code</label>
+                            <label class="block my-3 font-semibold text-gray-800 text-md" for="email">Name/Emp
+                                Code</label>
                             <input class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none" type="text"
                                 name="name" id="email" placeholder="Name/Emp Code" />
                         </div>
@@ -229,15 +420,15 @@ include('./include/config.php');
                     <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
 
                         <div>
-                        <button type="submit" name="edit"
-                        class="px-4 py-2 mt-6 mb-3 font-sans text-lg font-semibold tracking-wide text-white bg-pink-500 rounded-lg hover:bg-sky-800">Edit</button>
+                            <button type="submit" name="edit"
+                                class="px-4 py-2 mt-6 mb-3 font-sans text-lg font-semibold tracking-wide text-white bg-pink-500 rounded-lg hover:bg-sky-800">Edit</button>
                         </div>
                         <div class="">
-                        <button type="submit" name="submit"
-                        class="px-4 py-2 mt-6 mb-3 font-sans text-lg font-semibold tracking-wide text-white bg-pink-500 rounded-lg hover:bg-sky-800">Submit</button>
+                            <button type="submit" name="submit"
+                                class="px-4 py-2 mt-6 mb-3 font-sans text-lg font-semibold tracking-wide text-white bg-pink-500 rounded-lg hover:bg-sky-800">Submit</button>
                         </div>
                     </div>
-                    
+
 
             </div>
             </form>

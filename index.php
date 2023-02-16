@@ -29,6 +29,7 @@ if (isset($_POST['submit'])) {
 
     if (mysqli_num_rows($result) == 1) {
         $_SESSION['name'] = $name;
+        $_SESSION["name1"]='Mageshwaaran';
         $_SESSION['id'] = $id;
         header("location:branchmaster.php");
     } else {
@@ -48,6 +49,7 @@ if (isset($_POST['submit'])) {
     <title>Asset ||Userlogin</title>
     <link rel="icon" href="https://athulyahomecare.com/lp/images/fav.ico" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/dist/output.css" rel="stylesheet">
 </head>
 
 <body>

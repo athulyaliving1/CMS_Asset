@@ -35,6 +35,7 @@ if (isset($_POST['submit'])) {
         echo "<script type='text/javascript'>alert('Data Not Inserted!!'); location='product.php';</script>";
     }
 }
+
 // if(isset($_POST['update']))
 // {
 //     echo"File working";

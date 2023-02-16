@@ -1,0 +1,63 @@
+<script>
+// location value get from db
+
+function getLoc(loc) {
+    // alert('val');
+
+    $.ajax({
+        type: "POST",
+        url: "depentdb12.php",
+        data: 'tbranch_state=' + loc,
+        success: function(dataloc) {
+            console.log(dataloc);
+            $("#tbranch_city").html(dataloc);
+
+        },
+        error: function(error) {
+            console.log(`Error`);
+        }
+    });
+}
+
+// city value get from db
+function getLoc1(loc1) {
+    // alert('val');
+
+    $.ajax({
+        type: "POST",
+        url: "depentdb12.php",
+        data: 'tbranch_city=' + loc1,
+        success: function(dataloc1) {
+            console.log(dataloc1);
+            $("#tbranch_name").html(dataloc1);
+           
+        },
+        error: function(error) {
+            console.log(`Error`);
+        }
+    });
+
+}
+
+
+//   Get branch code  
+
+function getBr1(val2) {
+    // alert('val');
+
+    $.ajax({
+        type: "POST",
+        url: "branchcodesub1.php",
+        data: 'tbranch_name=' + val2,
+        success: function(data2) {
+            console.log(data2);
+            $("#tbranch_code").html(data2);
+
+        }
+    });
+}
+
+
+
+</script>
+

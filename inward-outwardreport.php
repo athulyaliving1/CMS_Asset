@@ -127,7 +127,7 @@ input[type=date]:focus {
        include('./include/sidebar.php');
            
            ?>
-    <div class="relative flex flex-col  w-full h-full py-6 overflow-hidden antialiased text-gray-800 sm:py-12">
+    <div class="relative flex flex-col w-full h-full py-6 overflow-hidden antialiased text-gray-800 sm:py-12">
         <div class="relative py-3 mx-auto text-center sm:w-96">
             <span class="text-2xl font-semibold ">Inward & Outward Report</span>
             <div class="mt-4 text-left bg-white rounded-lg shadow-xl">
@@ -155,7 +155,7 @@ input[type=date]:focus {
         <div class="h-full mb-10 ml-14 mt-14 md:ml-64 md:px-20 xl:px-10">
             <div class="grid grid-cols-1 gap-4 xl:grid-cols-2 ">
             <table class="border-collapse border border-slate-400 ...">
-                    <thead class="h-2  bg-cyan-700  text-slate-50 ">
+                    <thead class="h-2 bg-sky-800 text-slate-50 ">
                         <tr>
                             <th class="border border-slate-300 ... py-3">Date</th>
                             <th class="border border-slate-300 ... py-3">From</th>
@@ -215,9 +215,9 @@ input[type=date]:focus {
                     </tbody>
                 </table>
                 
-                <!--                 //OUT-->
+                <!--//OUT-->
                 <table class="border-collapse border border-slate-400 ...">
-                    <thead class="h-2 bg-cyan-700 text-slate-50 ">
+                    <thead class="h-2 bg-sky-800 text-slate-50 ">
                         <tr>
                            <th class="border border-slate-300 ... py-3">Date</th>
                            <th class="border border-slate-300 ... py-3">From</th>
