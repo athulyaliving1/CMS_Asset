@@ -173,10 +173,10 @@ if (isset($_POST['submit'])) {
             include('./include/sidebar.php');
 
             ?>
-            <div class="h-full mb-10 ml-14 mt-14 md:ml-64 md:px-20 xl:px-40">
+            <div class="h-full mb-10 ml-14 mt-14 md:ml-64 md:px-20 xl:px-12">
                 <div class="h-2 bg-pink-400 rounded-t-md"></div>
 
-                <form class="min-w-full p-10 bg-white rounded-lg shadow-xl" method="post" action="">
+                <form class="min-w-full p-10 bg-white rounded-lg shadow-xl xl:px-10" method="post" action="">
                     <!-- <h1 class="mb-6 font-sans text-2xl font-bold text-center text-gray-600"></h1> -->
 
                     <div class="grid grid-cols-1 gap-4 xl:grid-cols-3">
@@ -411,7 +411,7 @@ if (isset($_POST['submit'])) {
 
 
 
-                    <div class="grid justify-center grid-cols-1 gap-4 xl:grid-cols-2">
+                    <div class="grid place-items-center">
 
                         <!-- <div>
                             <button type="submit" name="edit"

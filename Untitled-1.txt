@@ -61,3 +61,82 @@ function getBr1(val2) {
 
 </script>
 
+
+
+
+
+
+
+
+
+
+
+<div class="grid grid-cols-2 gap-4">
+                            <div class=''>
+                                <label for="department" class="block my-3 font-semibold text-gray-800 text-md">Department
+                                </label>
+
+                                <select type="text" name="department" readonly class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none" id="department" onChange="getDep(this.value);">
+                                    <option value="">Select Category</option>
+                                    <?php
+                                    include('./include/config.php');
+
+                                    // $dbcon = mysqli_connect("localhost", "root", "", "test1");
+                                    $sql = mysqli_query($conn, "select stateName,state_id from state");
+                                    while ($rw = mysqli_fetch_assoc($sql)) {
+                                    ?>
+                                        <option value="<?php echo htmlentities($rw['stateName']); ?>">
+                                            <?php echo htmlentities($rw['stateName']); ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class=''>
+                                <label for="departmentcode" class="block my-3 font-semibold text-gray-800 text-md">Department Code
+                                </label>
+                                <div>
+                                    <select name="departmentcode" id="state_id" class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none">
+                                        <option value="">Select Subcategory</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class=''>
+                                <label for="department" class="block my-3 font-semibold text-gray-800 text-md">Department
+                                </label>
+
+                                <select type="text" name="department" readonly class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none" id="department" onChange="getDep(this.value);">
+                                    <option value="">Select Category</option>
+                                    <?php
+                                    include('./include/config.php');
+
+                                    // $dbcon = mysqli_connect("localhost", "root", "", "test1");
+                                    $sql = mysqli_query($conn, "select stateName,state_id from state");
+                                    while ($rw = mysqli_fetch_assoc($sql)) {
+                                    ?>
+                                        <option value="<?php echo htmlentities($rw['stateName']); ?>">
+                                            <?php echo htmlentities($rw['stateName']); ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class=''>
+                                <label for="departmentcode" class="block my-3 font-semibold text-gray-800 text-md">Department Code
+                                </label>
+                                <div>
+                                    <select name="departmentcode" id="state_id" class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none">
+                                        <option value="">Select Subcategory</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
