@@ -180,7 +180,7 @@
                 dom: 'Bfrtip',
                 responsive: true,
                 "processing": true,
-                "ajax": "assetdb",
+                "ajax": "assetdb.php",
                 "columns": [
 
 

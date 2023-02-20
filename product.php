@@ -191,7 +191,7 @@ if (isset($_POST['submit'])) {
 
                             // Establish database connection
                             //   $con = mysqli_connect($host, $username, $password, $dbname);
-                            $con = mysqli_connect("localhost", "root", "", "athul9z1_cms");
+                            // $con = mysqli_connect("localhost", "root", "", "athul9z1_cms");
                             // $con = mysqli_connect("localhost", "root", "", "athul9z1_cms");
 
                             // Check the connection
@@ -203,7 +203,7 @@ if (isset($_POST['submit'])) {
                             // include('./include/config.php');
 
                             $sql = "SELECT vendorname FROM vendorlist";
-                            $result = mysqli_query($con, $sql);
+                            $result = mysqli_query($conn, $sql);
 
                             // Create an array to store the data
                             $options = array();
@@ -212,9 +212,6 @@ if (isset($_POST['submit'])) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $options[] = $row['vendorname'];
                             }
-
-                            // Close the database connection
-                            mysqli_close($con);
                             ?>
                             <!-- Display the dropdown menu -->
                             <select class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none">
@@ -232,7 +229,6 @@ if (isset($_POST['submit'])) {
                             <select type="text" name="department" readonly class="w-full px-4 py-2 rounded-lg bg-zinc-100 focus:outline-none" id="department" onChange="getDep(this.value);">
                                 <option value="">Select Category</option>
                                 <?php
-                                include('./include/config.php');
 
                                 // $dbcon = mysqli_connect("localhost", "root", "", "test1");
                                 $sql = mysqli_query($conn, "select stateName,state_id from state");
@@ -361,7 +357,6 @@ if (isset($_POST['submit'])) {
                                 <?php
 
                                 // $conn = mysqli_connect("localhost", "root", "", "athul9z1_cms");
-                                include('./include/config.php');
 
 
                                 $sql = mysqli_query($conn, "select distinct branch_state from master_branches");
